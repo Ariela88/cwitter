@@ -1,1 +1,6 @@
-<p>header works!</p>
+<header>
+  <span>Cwitter</span>
+  <span><button (click)="logOut()" > Logout</button></span>
+  <button *ngIf="!isLogged">login</button>
+  <button *ngIf="isLogged"></button>
+</header>

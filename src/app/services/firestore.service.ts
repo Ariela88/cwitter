@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from 'firebase/app';
-import { Firestore, getFirestore } from "firebase/firestore";
+import { Firestore, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { FireappService } from './fireapp.service';
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, doc } from "firebase/firestore";
+import { OurUser } from '../model/user';
 
 
 
@@ -31,11 +32,24 @@ export class FirestoreService {
         url: doc.data()['url'],
         author: doc.data()['author'],
         creationTime: doc.data()['creationTime'].toDate().toUTCString()
-        //.toDateString(),
+
       }
     }));
   }
 
+  postOurUser(ouruser: OurUser, uid: string) {
+
+  const docUrl = doc(this.db, 'user', uid)
+   return setDoc(docUrl, ouruser)
+
+
+  }
+
+
+  getOurUser(uid:string){
+    const docUrl = doc(this.db, 'user', uid)
+    return getDoc(docUrl)
+  }
 
 }
 

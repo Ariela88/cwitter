@@ -1,2 +1,7 @@
-export interface User {
+export interface OurUser {
+
+
+  username:string;
+
+
 }
